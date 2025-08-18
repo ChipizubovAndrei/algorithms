@@ -1,0 +1,73 @@
+name: Linux workflow
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  TARGET: algorithms
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration:
+          - Release
+          - Debug
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Init Submodules
+      run: git submodule update --init --recursive
+    
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{matrix.configuration}} --verbose
+
+    - name: Testing
+      run: ctest --test-dir ${{github.workspace}}/build --verbose
+    
+    - name: Archive Artifacts
+      if: matrix.configuration == 'Release'
+      uses: actions/upload-artifact@v4
+      with: 
+        name: ${{env.TARGET}}-${{matrix.configuration}}
+        path: ${{github.workspace}}/bin/${{matrix.configuration}}
+        retention-days: 3
+
+  windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration:
+          - Release
+          - Debug
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Init Submodules
+      run: git submodule update --init --recursive
+    
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{matrix.configuration}} --verbose
+
+    - name: Testing
+      run: ctest --test-dir ${{github.workspace}}/build --verbose
+    
+    - name: Archive Artifacts
+      if: matrix.configuration == 'Release'
+      uses: actions/upload-artifact@v4
+      with: 
+        name: ${{env.TARGET}}-${{matrix.configuration}}
+        path: ${{github.workspace}}/bin/${{matrix.configuration}}
+        retention-days: 3
