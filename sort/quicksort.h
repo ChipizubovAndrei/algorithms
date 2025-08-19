@@ -1,8 +1,8 @@
 #pragma once
 
-// #include <vector>
+#include <Global.h>
+
+#include <vector>
 
 template <class Iter>
-void quicksort(Iter beginIter, Iter endIter)
-{
-}
+SORTLIB_EXPORT void quicksort(Iter beginIter, Iter endIter);

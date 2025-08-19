@@ -7,6 +7,8 @@ list(APPEND TestList
 foreach(Test IN LISTS TestList)
     add_executable(${Test} ${Test}.cpp)
 
+    set_property(TARGET ${Test} PROPERTY CXX_STANDARD 17)
+
     target_link_libraries(${Test} 
         PRIVATE 
             sort

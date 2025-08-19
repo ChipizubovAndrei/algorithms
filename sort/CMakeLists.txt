@@ -1,5 +1,12 @@
 project(sort)
 
-add_library(sort INTERFACE)
+set(SORT_SOURCES 
+    ./Global.h
+    
+    ./Quicksort.h
+    ./Quicksort.cpp
+)
 
-target_include_directories(sort INTERFACE ./)
+add_library(sort SHARED ${SORT_SOURCES})
+
+target_include_directories(sort PUBLIC ./)
