@@ -5,6 +5,8 @@ set(SORT_SOURCES
     
     ./Quicksort.h
     ./Quicksort.cpp
+
+    ./Bubblesort.h
 )
 
 add_library(sort SHARED ${SORT_SOURCES})

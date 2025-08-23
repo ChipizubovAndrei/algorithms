@@ -62,7 +62,7 @@ jobs:
       run: cmake --build ${{github.workspace}}/build --config ${{matrix.configuration}} --verbose
 
     - name: Testing
-      run: ctest --test-dir ${{github.workspace}}/build --verbose
+      run: ctest --test-dir ${{github.workspace}}/build -C ${{matrix.configuration}} --verbose
     
     - name: Archive Artifacts
       if: matrix.configuration == 'Release'

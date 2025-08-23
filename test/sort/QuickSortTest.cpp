@@ -1,4 +1,5 @@
- #include <Quicksort.h>
+#include <Quicksort.h>
+#include <Bubblesort.h>
 
 #include <vector>
 #include <array>
@@ -38,6 +39,22 @@ TEST(QuickSortTest, Empty_Vector) {
  TEST(QuickSortTest, Two_Element_Not_Right_Order_Vector) {
      std::vector<int> vec{ 2, 1 };
      std::vector<int> expect{ 1, 2 };
+     quicksort(vec.begin(), vec.end());
+
+     EXPECT_EQ(expect, vec);
+ }
+
+ TEST(QuickSortTest, Four_Element_Not_Right_Order_Vector) {
+     std::vector<int> vec{ 4, 3, 2, 1 };
+     std::vector<int> expect{ 1, 2, 3, 4 };
+     quicksort(vec.begin(), vec.end());
+
+     EXPECT_EQ(expect, vec);
+ }
+
+ TEST(QuickSortTest, Ten_Element_Not_Right_Order_Vector) {
+     std::vector<int> vec{ 4, 3, 2, 1, 0, -1, -2, -3, -4, -5 };
+     std::vector<int> expect{ -5, -4, -3, -2, -1, 0, 1, 2, 3, 4 };
      quicksort(vec.begin(), vec.end());
 
      EXPECT_EQ(expect, vec);
