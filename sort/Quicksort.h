@@ -33,19 +33,19 @@ SORTLIB_EXPORT void quicksort(Iter beginIter, Iter endIter)
 	if (beginIter == endIter || endIter - beginIter == 1) return;
 	std::size_t size = getContainerSize(beginIter, endIter);
 
-	Iter referenceIter = chooseRandomElement(beginIter, size);
-	std::cout << "reference = " << *referenceIter << std::endl;
+	Iter anchorIter = chooseRandomElement(beginIter, size);
+
 	Iter left = beginIter;
 	Iter right = endIter-1;
 	while (left <= right) {
-		if (referenceIter == left) {
+		if (anchorIter == left) {
 			left++;
 			continue;
 		}
-		else if (*left <= *referenceIter) {
-			if (referenceIter < left) {
-				std::iter_swap(referenceIter, left);
-				referenceIter = left;
+		else if (*left <= *anchorIter) {
+			if (anchorIter < left) {
+				std::iter_swap(anchorIter, left);
+				anchorIter = left;
 			}
 			else {
 				left++;
@@ -53,17 +53,12 @@ SORTLIB_EXPORT void quicksort(Iter beginIter, Iter endIter)
 		}
 		else {
 			std::iter_swap(left, right);
-			if (right == referenceIter) referenceIter = left;
+			if (right == anchorIter) anchorIter = left;
 			right--;
 		}
 	}
-	std::cout << "reference after = " << *referenceIter << std::endl;
-	for (Iter temp = beginIter; temp != endIter; temp++) {
-		std::cout << *temp << " ";
-	}
-	std::cout << "\n";
 
-	quicksort(beginIter, referenceIter);
-	quicksort(++referenceIter, endIter);
+	quicksort(beginIter, anchorIter);
+	quicksort(++anchorIter, endIter);
 }
 

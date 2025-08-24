@@ -1,7 +1,7 @@
 project(sort-test)
 
 list(APPEND TestList 
-    QuickSortTest
+    SortTest
 )
 
 foreach(Test IN LISTS TestList)
