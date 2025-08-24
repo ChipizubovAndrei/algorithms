@@ -37,7 +37,7 @@ jobs:
       if: matrix.configuration == 'Release'
       uses: actions/upload-artifact@v4
       with: 
-        name: ${{env.TARGET}}-${{matrix.configuration}}
+        name: linux-${{env.TARGET}}-${{matrix.configuration}}
         path: ${{github.workspace}}/bin/${{matrix.configuration}}
         retention-days: 3
 
@@ -69,5 +69,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with: 
         name: ${{env.TARGET}}-${{matrix.configuration}}
-        path: ${{github.workspace}}/bin/${{matrix.configuration}}
+        path: windows-${{github.workspace}}/bin/${{matrix.configuration}}
         retention-days: 3
