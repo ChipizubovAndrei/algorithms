@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include <algorithm>
+
 template <class Iter>
 Iter chooseRandomElement(Iter beginIter, Iter endIter)
 {
@@ -32,15 +34,20 @@ SORTLIB_EXPORT void quicksort(Iter beginIter, Iter endIter)
 			continue;
 		}
 		else if (*left <= *referenceIter) {
-			left++;
+			if (referenceIter < left) {
+				std::iter_swap(referenceIter, left);
+			}
+			else {
+				left++;
+			}
 		}
 		else {
-			std::swap(*left, *right);
+			std::iter_swap(left, right);
 			right--;
 		}
 	}
 	if (*left < *referenceIter && seenFlag) {
-		std::swap(*left, *referenceIter);
+		std::iter_swap(left, referenceIter);
 		referenceIter = left;
 	}
 

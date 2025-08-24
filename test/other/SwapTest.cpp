@@ -56,3 +56,15 @@ TEST(SwapTest, Swap_Same_Element) {
 
 	EXPECT_EQ(real, expected);
 }
+
+TEST(SwapTest, IterSwap_Elements_By_Iter) {
+	std::array<int, 2> real = { 0, 1 };
+	std::array<int, 2> expect = { 1, 0 };
+
+	auto firstElemIter = real.begin();
+	auto lastElemIter = real.end() - 1;
+
+	std::iter_swap(firstElemIter, lastElemIter);
+
+	EXPECT_EQ(real, expect);
+}
