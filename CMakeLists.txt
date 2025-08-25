@@ -27,3 +27,5 @@ add_subdirectory(externals/googlebenchmark)
 
 add_subdirectory(test/sort)
 add_subdirectory(test/other)
+
+add_subdirectory(benchmark/sort)
