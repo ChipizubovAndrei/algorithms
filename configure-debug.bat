@@ -1,0 +1,2 @@
+git submodule update --init --recursive
+cmake -B build -S . -DCMAKE_BUILD_TYPE=Debug -DBENCHMARK_ENABLE_GTEST_TESTS=OFF -DBENCHMARK_ENABLE_TESTING=OFF
