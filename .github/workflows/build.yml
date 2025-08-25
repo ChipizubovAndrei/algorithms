@@ -25,7 +25,7 @@ jobs:
       run: git submodule update --init --recursive
     
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.configuration}} -DBENCHMARK_ENABLE_GTEST_TESTS=OFF -DBENCHMARK_ENABLE_TESTING=OFF
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{matrix.configuration}} --verbose
