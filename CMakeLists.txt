@@ -22,10 +22,12 @@ add_subdirectory(sort)
 # Test and bechmarks
 enable_testing()
 add_subdirectory(externals/googletest)
-add_subdirectory(externals/googlebenchmark)
 
 
 add_subdirectory(test/sort)
 add_subdirectory(test/other)
 
-add_subdirectory(benchmark/sort)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_subdirectory(externals/googlebenchmark)
+    add_subdirectory(benchmark/sort)
+endif()
