@@ -32,6 +32,10 @@ jobs:
 
     - name: Testing
       run: ctest --test-dir ${{github.workspace}}/build --verbose
+
+    - name: Sort Benchmark
+      if: matrix.configuration == 'Release'
+      run: ${{github.workspace}}/bin/${{matrix.configuration}}/SortBenchmark
     
     - name: Archive Artifacts
       if: matrix.configuration == 'Release'
@@ -63,6 +67,10 @@ jobs:
 
     - name: Testing
       run: ctest --test-dir ${{github.workspace}}/build -C ${{matrix.configuration}} --verbose
+
+    - name: Sort Benchmark
+      if: matrix.configuration == 'Release'
+      run: ${{github.workspace}}/bin/${{matrix.configuration}}/SortBenchmark
     
     - name: Archive Artifacts
       if: matrix.configuration == 'Release'
