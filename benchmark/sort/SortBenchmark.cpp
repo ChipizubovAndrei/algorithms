@@ -1,5 +1,6 @@
 #include <Quicksort.h>
 #include <Bubblesort.h>
+#include <InsertionSort.h>
 
 #include <Utils.h>
 
@@ -20,6 +21,13 @@ void BubbleSortBenchmark(benchmark::State& state) {
 	}
 }
 
+void InsertionSortBenchmark(benchmark::State& state) {
+	for (auto _ : state) {
+		std::vector<int> test = generateRandomVector(state.range(0));
+		insertionsort(test.begin(), test.end());
+	}
+}
+
 void STLSortBenchmark(benchmark::State& state) {
 	for (auto _ : state) {
 		std::vector<int> test = generateRandomVector(state.range(0));
@@ -29,6 +37,7 @@ void STLSortBenchmark(benchmark::State& state) {
 
 BENCHMARK(QuickSortBenchmark)->Arg(10)->Arg(100)->Arg(10000);
 BENCHMARK(BubbleSortBenchmark)->Arg(10)->Arg(100)->Arg(10000);
+BENCHMARK(InsertionSortBenchmark)->Arg(10)->Arg(100)->Arg(10000);
 BENCHMARK(STLSortBenchmark)->Arg(10)->Arg(100)->Arg(10000);
 
 BENCHMARK_MAIN();
