@@ -1,5 +1,18 @@
 #pragma once
 
+#include <algorithm>
+
+template <class Iter>
+void moveAllRightAndInsert(Iter begin, Iter end)
+{
+    Iter curr = end;
+    while(curr != begin) {
+        Iter nextCurr = curr - 1;
+        std::iter_swap(nextCurr, curr);
+        curr--;
+    }
+}
+
 template <class Iter>
 void insertionsort(Iter beginIter, Iter endIter)
 {
@@ -8,18 +21,14 @@ void insertionsort(Iter beginIter, Iter endIter)
     while (curr != endIter) {
         Iter sortedElem = beginIter;
         while (sortedElem != curr) {
-            if (curr > sortedElem) {
+            if (*curr > *sortedElem) {
                 sortedElem++;
             }
             else {
-                moveRightAndInsert(sortedElem, curr);
+                moveAllRightAndInsert(sortedElem, curr);
+                break;
             }
         }
+        curr++;
     }
-}
-
-template <class Iter>
-void moveAllRightAndInsert(Iter begin, Iter end)
-{
-
 }
