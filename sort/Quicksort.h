@@ -62,3 +62,22 @@ SORTLIB_EXPORT void quicksort(Iter beginIter, Iter endIter)
 	quicksort(++anchorIter, endIter);
 }
 
+
+template <typename Iter>
+void quicksort_mod(Iter begin, Iter end)
+{
+    auto size = getContainerSize(begin, end);
+    if(size == 0 || size == 1) return;
+
+    auto offset = generateRandomOffset(begin, size - 1);
+    Iter anchor = begin + offset;
+
+    Iter right = begin - 1;
+    std::iter_swap(anchor, right);
+    anchor = right;
+
+    Iter left = begin;          // point to value, smaller than anchor
+    
+
+    std::iter_swap(left, anchor);
+}
