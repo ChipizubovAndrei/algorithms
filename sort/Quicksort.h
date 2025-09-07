@@ -69,15 +69,28 @@ void quicksort_mod(Iter begin, Iter end)
     auto size = getContainerSize(begin, end);
     if(size == 0 || size == 1) return;
 
-    auto offset = generateRandomOffset(begin, size - 1);
+    auto offset = generateRandomOffset(size - 1);
+	offset = 0;
     Iter anchor = begin + offset;
 
-    Iter right = begin - 1;
+    Iter right = end - 1;
     std::iter_swap(anchor, right);
     anchor = right;
+	right--;
 
-    Iter left = begin;          // point to value, smaller than anchor
-    
-
-    std::iter_swap(left, anchor);
+    Iter left = begin;
+	while (left != right) {
+		if (*left < *anchor) {
+			left++;
+		}
+		else {
+			std::iter_swap(left, right);
+			right--;
+		}
+	}
+	if (*left > *anchor) {
+		std::iter_swap(left, anchor);
+	}
+	quicksort_mod(begin, left);
+	quicksort_mod(++left, end);
 }
