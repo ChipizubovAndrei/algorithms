@@ -22,75 +22,22 @@ Iter chooseRandomElement(Iter beginIter, const int & size)
 	return beginIter + offset;
 }
 
-template <class Iter>
-std::size_t getContainerSize(Iter beginIter, Iter endIter) {
-	return endIter - beginIter;
-}
-
-template <class Iter>
-SORTLIB_EXPORT void quicksort(Iter beginIter, Iter endIter)
-{
-	if (beginIter == endIter || endIter - beginIter == 1) return;
-	std::size_t size = getContainerSize(beginIter, endIter);
-
-	Iter anchorIter = chooseRandomElement(beginIter, size);
-
-	Iter left = beginIter;
-	Iter right = endIter-1;
-	while (left <= right) {
-		if (anchorIter == left) {
-			left++;
-			continue;
-		}
-		else if (*left <= *anchorIter) {
-			if (anchorIter < left) {
-				std::iter_swap(anchorIter, left);
-				anchorIter = left;
-			}
-			else {
-				left++;
-			}
-		}
-		else {
-			std::iter_swap(left, right);
-			if (right == anchorIter) anchorIter = left;
-			right--;
-		}
-	}
-
-	quicksort(beginIter, anchorIter);
-	quicksort(++anchorIter, endIter);
-}
-
-
 template <typename Iter>
-void quicksort_mod(Iter begin, Iter end)
+void quicksort(Iter begin, Iter end)
 {
-    auto size = getContainerSize(begin, end);
-    if(size == 0 || size == 1) return;
+    std::size_t size = std::distance(begin, end);
+    if( size < 1) return;
 
-    auto offset = generateRandomOffset(size - 1);
-	offset = 0;
-    Iter anchor = begin + offset;
+    auto anchor = *(end - 1);       // in original should be random
+    Iter i = begin;
+    for(Iter j = begin; j != end - 1; ++j){
+        if(*j < anchor){
+            std::iter_swap(i, j);
+            ++i;
+        }
+    }
+    std::iter_swap(i, end - 1);
 
-    Iter right = end - 1;
-    std::iter_swap(anchor, right);
-    anchor = right;
-	right--;
-
-    Iter left = begin;
-	while (left != right) {
-		if (*left < *anchor) {
-			left++;
-		}
-		else {
-			std::iter_swap(left, right);
-			right--;
-		}
-	}
-	if (*left > *anchor) {
-		std::iter_swap(left, anchor);
-	}
-	quicksort_mod(begin, left);
-	quicksort_mod(++left, end);
+	quicksort(begin, i);
+	quicksort(++i, end);
 }

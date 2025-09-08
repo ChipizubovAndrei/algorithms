@@ -15,13 +15,6 @@ struct QuickSort {
     }
 };
 
-struct QuickSortMod {
-    template<class Iter>
-    void operator()(Iter begin, Iter end) const {
-        quicksort_mod(begin, end);
-    }
-};
-
 struct BubbleSort {
     template<class Iter>
     void operator()(Iter begin, Iter end) const {
@@ -43,10 +36,9 @@ protected:
 };
 
 using SortImplementations = testing::Types<
-    QuickSort,
     BubbleSort,
     InsertionSort,
-    QuickSortMod
+    QuickSort
 >;
 
 TYPED_TEST_SUITE(SortTest, SortImplementations);
