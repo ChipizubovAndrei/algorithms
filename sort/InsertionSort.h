@@ -7,9 +7,9 @@ void moveAllRightAndInsert(Iter begin, Iter end)
 {
     Iter curr = end;
     while(curr != begin) {
-        Iter nextCurr = curr - 1;
+        Iter nextCurr = std::prev(curr, 1);
         std::iter_swap(nextCurr, curr);
-        curr--;
+        curr = std::prev(curr, 1);
     }
 }
 
@@ -22,7 +22,7 @@ void insertionsort(Iter beginIter, Iter endIter)
         Iter sortedElem = beginIter;
         while (sortedElem != curr) {
             if (*curr > *sortedElem) {
-                sortedElem++;
+                sortedElem = std::next(sortedElem, 1);
             }
             else {
                 moveAllRightAndInsert(sortedElem, curr);

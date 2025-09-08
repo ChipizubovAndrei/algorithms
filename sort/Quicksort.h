@@ -28,15 +28,15 @@ void quicksort(Iter begin, Iter end)
     std::size_t size = std::distance(begin, end);
     if( size < 1) return;
 
-    auto anchor = *(end - 1);       // in original should be random
+    auto anchor = *(std::prev(end, 1));       // in original should be random
     Iter i = begin;
-    for(Iter j = begin; j != end - 1; ++j){
+    for(Iter j = begin; j != std::prev(end, 1); j = std::next(j, 1)){
         if(*j < anchor){
             std::iter_swap(i, j);
             ++i;
         }
     }
-    std::iter_swap(i, end - 1);
+    std::iter_swap(i, std::prev(end, 1));
 
 	quicksort(begin, i);
 	quicksort(++i, end);
