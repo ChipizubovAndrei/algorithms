@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <array>
+#include <list>
 
 #include <gtest/gtest.h>
 
@@ -56,6 +57,13 @@ TYPED_TEST(SortTest, Empty_Array) {
 
     EXPECT_TRUE(arr.empty());
 }
+
+// TYPED_TEST(SortTest, Empty_List) {
+//     std::list<int> cont{};
+//     this->sorter(cont.begin(), cont.end());
+
+//     EXPECT_TRUE(cont.empty());
+// }
 
 TYPED_TEST(SortTest, One_Element_Vector) {
     std::vector<int> vec{1};

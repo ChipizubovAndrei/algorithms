@@ -3,6 +3,7 @@ project(sort-test)
 list(APPEND TestList 
     SwapTest
     IteratorsTest
+    ListIteratorTest
 )
 
 foreach(Test IN LISTS TestList)
