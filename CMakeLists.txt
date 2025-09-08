@@ -23,9 +23,11 @@ add_subdirectory(sort)
 enable_testing()
 add_subdirectory(externals/googletest)
 
-
 add_subdirectory(test/sort)
 add_subdirectory(test/other)
 
+set(BENCHMARK_ENABLE_GTEST_TESTS OFF)
+set(BENCHMARK_ENABLE_TESTING OFF)
 add_subdirectory(externals/googlebenchmark)
+
 add_subdirectory(benchmark/sort)
