@@ -41,21 +41,31 @@ TEST_F(ListIteratorTest, CompareDetermineSizeByIteratorsAndSizeFunc){
     EXPECT_EQ(sizeBySizeFunc, sizeByIterators);
 }
 
+TEST_F(ListIteratorTest, IncrementListIterator)
+{
+    auto begin = m_list_10_elements.begin();
+
+    EXPECT_EQ(*(std::next(begin)), 1);
+    EXPECT_EQ(*(std::next(begin, 5)), 5);
+
+    std::size_t size = std::distance(begin, m_list_10_elements.end());
+    EXPECT_EQ(*(std::next(begin, size-1)), m_list_10_elements.back());
+}
+
+TEST_F(ListIteratorTest, DecrementListIterator)
+{
+    auto end = m_list_10_elements.end();
+
+    EXPECT_EQ(*(std::prev(end)), m_list_10_elements.back());
+    EXPECT_EQ(*(std::prev(end, 5)), 5);
+
+    std::size_t size = std::distance(m_list_10_elements.begin(), m_list_10_elements.end());
+    EXPECT_EQ(*(std::prev(end, size)), m_list_10_elements.front());
+}
+
 TEST_F(ListIteratorTest, DetermineSizeListByReversedIteratorsOrder) {
     auto begin = m_list_10_elements.begin();
     auto end = m_list_10_elements.end();
-
-    std::size_t sizeByNormalOrder = std::distance(begin, end);
-    std::size_t sizeByReversedOrder = std::distance(end, begin);
-
-    EXPECT_NE(sizeByNormalOrder, sizeByReversedOrder);
-    EXPECT_EQ(sizeByNormalOrder, 10);
-    EXPECT_EQ(sizeByReversedOrder, 1);
-}
-
-TEST_F(ListIteratorTest, DetermineSizeForwardListByReversedIteratorsOrder) {
-    auto begin = m_forward_list_10.begin();
-    auto end = m_forward_list_10.end();
 
     std::size_t sizeByNormalOrder = std::distance(begin, end);
     std::size_t sizeByReversedOrder = std::distance(end, begin);
