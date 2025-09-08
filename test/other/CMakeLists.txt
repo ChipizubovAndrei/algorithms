@@ -4,6 +4,7 @@ list(APPEND TestList
     SwapTest
     IteratorsTest
     ListIteratorTest
+    ParameterizedValueTestTest
 )
 
 foreach(Test IN LISTS TestList)
