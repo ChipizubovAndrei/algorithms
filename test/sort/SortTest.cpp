@@ -31,10 +31,10 @@ struct InsertionSort {
     }
 };
 
-template <typename SortStratagy>
+template <typename SortStrategy>
 class SortTest : public testing::Test {
 protected:
-    SortStratagy sorter;
+    SortStrategy sorter;
 };
 
 using SortImplementations = testing::Types<
