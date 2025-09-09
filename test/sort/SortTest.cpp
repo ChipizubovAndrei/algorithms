@@ -11,27 +11,27 @@
 
 
 struct QuickSort {
-    template<class Iter>
+    template<typename Iter>
     void operator()(Iter begin, Iter end) const {
         quicksort(begin, end);
     }
 };
 
 struct BubbleSort {
-    template<class Iter>
+    template<typename Iter>
     void operator()(Iter begin, Iter end) const {
         bubblesort(begin, end);
     }
 };
 
 struct InsertionSort {
-    template <class Iter>
+    template <typename Iter>
     void operator()(Iter begin, Iter end) const {
         insertionsort(begin, end);
     }
 };
 
-template <class SortStratagy>
+template <typename SortStratagy>
 class SortTest : public testing::Test {
 protected:
     SortStratagy sorter;
