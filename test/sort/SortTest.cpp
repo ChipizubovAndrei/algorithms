@@ -1,6 +1,7 @@
 #include <Quicksort.h>
 #include <Bubblesort.h>
 #include <InsertionSort.h>
+#include <Mergesort.h>
 
 #include <vector>
 #include <array>
@@ -31,6 +32,13 @@ struct InsertionSort {
     }
 };
 
+struct MergeSort {
+    template <typename Iter>
+    void operator()(Iter begin, Iter end) {
+        mergesort(begin, end);
+    }
+};
+
 template <typename SortStrategy>
 class SortTest : public testing::Test {
 protected:
@@ -40,6 +48,7 @@ protected:
 using SortImplementations = testing::Types<
     BubbleSort,
     InsertionSort,
+    MergeSort,
     QuickSort
 >;
 

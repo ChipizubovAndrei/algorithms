@@ -2,13 +2,11 @@ project(sort)
 
 set(SORT_SOURCES 
     ./Global.h
-    
     ./Quicksort.h
     ./Quicksort.cpp
-
     ./Bubblesort.h
-
     ./InsertionSort.h
+    ./Mergesort.h
 )
 
 add_library(sort SHARED ${SORT_SOURCES})
