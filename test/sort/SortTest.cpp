@@ -66,13 +66,6 @@ TYPED_TEST(SortTest, Empty_List) {
     EXPECT_TRUE(cont.empty());
 }
 
-//TYPED_TEST(SortTest, Empty_ForwardList) {
-//    std::forward_list<int> cont{};
-//    this->sorter(cont.begin(), cont.end());
-//
-//    EXPECT_TRUE(cont.empty());
-//}
-
 TYPED_TEST(SortTest, One_Element_Vector) {
     std::vector<int> vec = { 1 };
     std::vector<int> expect = { 1 };
