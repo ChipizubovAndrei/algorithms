@@ -5,13 +5,23 @@
 template <typename Iter>
 void merge(Iter lBegin, Iter lEnd, Iter rBegin, Iter rEnd) {
 	Iter i = lBegin;
-	for (Iter j = lBegin; j != rEnd; j = std::next(j, 1)) {
-		if (*i > *j) {
-			std::iter_swap(i, j);
+	for (Iter j = rBegin; j != rEnd;/* j = std::next(j, 1)*/) {
+		if (*i < *j) {
+			i = std::next(i, 1);
+			j = rBegin;
+			continue;
+		}
+		else {
+			//auto anchor = *j;
+			/*Перемещаем значение j вверх, так как оно меньше чем i*/
+			for (Iter curr = j; curr != i; curr = std::prev(curr, 1)) {
+				Iter prev = std::prev(curr, 1);
+				std::iter_swap(prev, curr);
+			}
 			i = std::next(i, 1);
 		}
+		j = std::next(j, 1);
 	}
-	std::iter_swap(i, std::prev(rEnd, 1));
 }
 
 template <typename Iter>
