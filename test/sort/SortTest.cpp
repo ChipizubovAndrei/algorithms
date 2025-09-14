@@ -130,3 +130,13 @@ TYPED_TEST(SortTest, Half_Same_Odd_Elements_Vector) {
 
     EXPECT_EQ(expect, vec);
 }
+
+TYPED_TEST(SortTest, Random_Odd_Elements_Vector) {
+    std::vector<int> vec = { 1, 6, 5, 8};
+    auto expect = vec;
+    std::sort(expect.begin(), expect.end());
+
+    this->sorter(vec.begin(), vec.end());
+
+    EXPECT_EQ(expect, vec);
+}

@@ -75,4 +75,16 @@ TEST_F(ListIteratorTest, DetermineSizeListByReversedIteratorsOrder) {
     EXPECT_EQ(sizeByReversedOrder, 1);
 }
 
+TEST_F(ListIteratorTest, CalcDistanceForTwoElementVector) {
+
+    std::vector<int> vec = { 1, 2, 3 };
+    auto begin = vec.begin();
+    auto end = begin + 1;
+    std::size_t expectSize = 1;
+
+    std::size_t size = std::distance(begin, end);
+
+    EXPECT_EQ(expectSize, size);
+}
+
 // TODO: Define test for std::distence for iters from different lists

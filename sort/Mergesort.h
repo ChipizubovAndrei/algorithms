@@ -2,17 +2,18 @@
 
 #include <algorithm>
 
+#include <iostream>
+
 template <typename Iter>
 void merge(Iter lBegin, Iter lEnd, Iter rBegin, Iter rEnd) {
 	Iter i = lBegin;
-	for (Iter j = rBegin; j != rEnd;/* j = std::next(j, 1)*/) {
+	for (Iter j = rBegin; j != rEnd;) {
 		if (*i < *j) {
 			i = std::next(i, 1);
 			j = rBegin;
 			continue;
 		}
 		else {
-			//auto anchor = *j;
 			/*Перемещаем значение j вверх, так как оно меньше чем i*/
 			for (Iter curr = j; curr != i; curr = std::prev(curr, 1)) {
 				Iter prev = std::prev(curr, 1);
@@ -20,6 +21,7 @@ void merge(Iter lBegin, Iter lEnd, Iter rBegin, Iter rEnd) {
 			}
 			i = std::next(i, 1);
 		}
+		rBegin = std::next(rBegin, 1);
 		j = std::next(j, 1);
 	}
 }
