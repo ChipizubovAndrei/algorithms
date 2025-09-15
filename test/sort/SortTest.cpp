@@ -1,7 +1,8 @@
-#include <Quicksort.h>
 #include <Bubblesort.h>
 #include <InsertionSort.h>
 #include <Mergesort.h>
+#include <Quicksort.h>
+#include <Selectionsort.h>
 
 #include <vector>
 #include <array>
@@ -9,14 +10,6 @@
 #include <forward_list>
 
 #include <gtest/gtest.h>
-
-
-struct QuickSort {
-    template<typename Iter>
-    void operator()(Iter begin, Iter end) const {
-        quicksort(begin, end);
-    }
-};
 
 struct BubbleSort {
     template<typename Iter>
@@ -32,10 +25,24 @@ struct InsertionSort {
     }
 };
 
+struct SelectionSort {
+    template <typename Iter>
+    void operator()(Iter begin, Iter end) {
+        seletionsort(begin, end);
+    }
+};
+
 struct MergeSort {
     template <typename Iter>
     void operator()(Iter begin, Iter end) {
         mergesort_v1(begin, end);
+    }
+};
+
+struct QuickSort {
+    template<typename Iter>
+    void operator()(Iter begin, Iter end) const {
+        quicksort(begin, end);
     }
 };
 
@@ -48,6 +55,7 @@ protected:
 using SortImplementations = testing::Types<
     BubbleSort,
     InsertionSort,
+    SelectionSort,
     MergeSort,
     QuickSort
 >;

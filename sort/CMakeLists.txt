@@ -7,6 +7,7 @@ set(SORT_SOURCES
     ./Bubblesort.h
     ./InsertionSort.h
     ./Mergesort.h
+    ./Selectionsort.h
 )
 
 add_library(sort SHARED ${SORT_SOURCES})
