@@ -35,7 +35,7 @@ struct InsertionSort {
 struct MergeSort {
     template <typename Iter>
     void operator()(Iter begin, Iter end) {
-        mergesort(begin, end);
+        mergesort_v1(begin, end);
     }
 };
 

@@ -28,6 +28,13 @@ void MergeSortBenchmark(benchmark::State& state) {
 	}
 }
 
+void MergeSortV1Benchmark(benchmark::State& state) {
+	for (auto _ : state) {
+		std::vector<int> vec = generateRandomVector(state.range(0));
+		mergesort_v1(vec.begin(), vec.end());
+	}
+}
+
 void QuickSortBenchmark(benchmark::State& state) {
 	for (auto _ : state) {
 		std::vector<int> test = generateRandomVector(state.range(0));
@@ -45,6 +52,7 @@ void STLSortBenchmark(benchmark::State& state) {
 BENCHMARK(BubbleSortBenchmark)->Arg(100)->Arg(1000)->Arg(10000);
 BENCHMARK(InsertionSortBenchmark)->Arg(100)->Arg(1000)->Arg(10000);
 BENCHMARK(MergeSortBenchmark)->Arg(100)->Arg(1000)->Arg(10000);
+BENCHMARK(MergeSortV1Benchmark)->Arg(100)->Arg(1000)->Arg(10000);
 BENCHMARK(QuickSortBenchmark)->Arg(100)->Arg(1000)->Arg(10000);
 BENCHMARK(STLSortBenchmark)->Arg(100)->Arg(1000)->Arg(10000);
 
